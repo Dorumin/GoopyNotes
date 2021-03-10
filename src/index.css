@@ -1,22 +1,24 @@
-/*
- * @NOTE: Prepend a `~` to css file paths that are in your node_modules
- *        See https://github.com/webpack-contrib/sass-loader#imports
- */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+/* CSS reset */
+body {
+    margin: 0;
+}
 
-body, #root {
+#root {
+    color: white;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+    background: url('/assets/bgs/Opalset.jpg') right bottom / 1100px no-repeat fixed;
+    background-size: cover;
     position: absolute;
     top: 0;
+    left: 0;
     right: 0;
     bottom: 0;
-    left: 0;
-    margin: 0;
-    color: white;
-    background-color: #1e1e1e;
-    font-family: 'Noto Sans JP', sans-serif;
     overflow: hidden;
 }
 
-* {
+/* The only way to live */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }

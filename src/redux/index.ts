@@ -1,22 +1,21 @@
-import { createStore, Action, applyMiddleware } from 'redux';
-import { TypedUseSelectorHook, useSelector as baseUseSelector } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { persistStore } from 'redux-persist';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { TypedUseSelectorHook, useSelector as baseUseSelector } from 'react-redux';
 
-import rootReducer from './reducers';
+import reducer from './reducers';
+import { PossibleActions } from './actions';
 
-export type RootState = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<typeof reducer>;
 
-const store = createStore<RootState, Action<any>, unknown, unknown>(
-    rootReducer,
+export const store = createStore<RootState, PossibleActions, unknown, unknown>(
+    reducer,
     composeWithDevTools(
         applyMiddleware()
     )
 );
 
-// Bound type helpers
-const useSelector: TypedUseSelectorHook<RootState> = baseUseSelector;
+export const persistor = persistStore(store);
 
-export {
-    store,
-    useSelector
-};
+// Bound type helpers
+export const useSelector: TypedUseSelectorHook<RootState> = baseUseSelector;

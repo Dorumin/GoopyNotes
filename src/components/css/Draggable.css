@@ -1,0 +1,12 @@
+.draggable {
+    position: relative;
+}
+
+.draggable-handle {
+    background-color: green;
+    width: 16px;
+    height: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

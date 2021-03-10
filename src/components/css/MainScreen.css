@@ -1,23 +1,48 @@
+.background {
+    background: rgba(0, 0, 0, .5);
+    mix-blend-mode: multiply;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    filter: blur(200px);
+}
+
+.background::after {
+    content: '';
+    position: absolute;
+    right: 90px;
+    bottom: 150px;
+    width: 320px;
+    height: 320px;
+    background: white;
+    transform: rotate(45deg);
+}
+
 .main-screen {
-    padding: 12px;
-    height: 100%;
     text-align: center;
+    height: 100%;
+    width: 100%;
+    padding: 12px;
+    position: absolute;
 }
 
 .make-note {
-    appearance: none;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, .1);
-    height: 64px;
-    width: 64px;
-    font-size: 48px;
-    color: white;
-    border: none;
-    position: absolute;
-    bottom: 24px;
-    right: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, .1);
+    font-size: 48px;
+    color: white;
+    height: 64px;
+    width: 64px;
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
     cursor: pointer;
+    appearance: none;
 }

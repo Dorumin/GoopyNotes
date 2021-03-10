@@ -1,0 +1,13 @@
+.resizable {
+    position: relative;
+    overflow: hidden;
+}
+
+.resizable-handle {
+    background-color: red;
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

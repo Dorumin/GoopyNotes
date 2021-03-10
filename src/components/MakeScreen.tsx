@@ -1,18 +1,26 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { addNote } from '../redux/actions';
+import { encrypt } from 'tiny-encryption-algorithm';
+import { sha256 } from 'js-sha256';
 
 import './css/MakeScreen.css';
 
-export default function LoginScreen() {
+export default function MakeScreen() {
     // TODO: Consider whether uncontrolled inputs with useRef are better
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
     const [redirect, setRedirect] = useState('');
 
+    const [locking, setLocking] = useState(false);
+    const [password, setPassword] = useState('');
+    const [focusPassword, setFocusPassword] = useState(false);
+
     const dispatch = useDispatch();
+
+    const passwordInput = useRef<HTMLInputElement>(null);
 
     const onTitleChange = useCallback((e) => {
         setTitle(e.target.value);
@@ -22,7 +30,6 @@ export default function LoginScreen() {
     }, []);
 
     const onSave = useCallback(() => {
-        console.log("Saving");
         dispatch(
             addNote({
                 type: 'text',
@@ -33,15 +40,49 @@ export default function LoginScreen() {
         setRedirect('/');
     }, [title, content]);
     const onLock = useCallback(() => {
-        console.log("Locking");
+        if (locking) {
+            if (password.trim() !== '') {
+                console.log(`Locking with ${password}`);
+
+                dispatch(
+                    addNote({
+                        type: 'encrypted',
+                        title,
+                        encryptedContent: encrypt(content, password).toString(),
+                        checksum: sha256(content)
+                    })
+                );
+                setRedirect('/');
+            } else {
+                setLocking(false);
+            }
+        } else {
+            setLocking(true);
+            setFocusPassword(true);
+        }
+    }, [locking, password, title, content]);
+    const onPasswordChange = useCallback((e) => {
+        setPassword(e.target.value);
     }, []);
 
+    const onPasswordKeyDown = useCallback((e) => {
+        if (e.key === 'Enter') {
+            onLock();
+        }
+    }, [onLock]);
+
+    // useEffect(() => {
+    //     console.log(`${title}: ${content}`);
+    // }, [title, content]);
+
     useEffect(() => {
-        console.log(`${title}: ${content}`);
-    }, [title, content])
+        if (focusPassword) {
+            passwordInput.current.focus();
+        }
+    }, [focusPassword]);
 
     if (redirect !== '') {
-        return <Redirect to={redirect} />
+        return <Redirect to={redirect} />;
     }
 
     return (
@@ -65,17 +106,28 @@ export default function LoginScreen() {
                 />
             </div>
             <button
+                type="button"
                 className="note-save-button"
                 onClick={onSave}
             >
                 Save it
             </button>
             <button
+                type="button"
                 className="note-save-button"
                 onClick={onLock}
             >
                 Lock it
             </button>
+            {
+                locking && <input
+                    type="password"
+                    className="note-password-input"
+                    ref={passwordInput}
+                    onChange={onPasswordChange}
+                    onKeyDown={onPasswordKeyDown}
+                />
+            }
         </div>
-    )
+    );
 }

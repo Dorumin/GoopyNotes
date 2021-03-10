@@ -1,25 +1,7 @@
-export const ADD_NOTE = 'ADD_NOTE';
+import { CounterActions } from './counter';
+import { NotesActions } from './notes';
 
-export interface NotesAddAction {
-    type: typeof ADD_NOTE;
-    payload: AddNoteParams
-};
+export * from './counter';
+export * from './notes';
 
-export interface AddNoteParams {
-    type: "text" | "encrypted";
-    title: string;
-    content: string;
-}
-
-export function addNote({ type, title, content }: AddNoteParams): NotesAddAction {
-    return {
-        type: ADD_NOTE,
-        payload: {
-            type,
-            title,
-            content
-        }
-    };
-}
-
-export type NotesActions = NotesAddAction;
+export type PossibleActions = CounterActions | NotesActions;
