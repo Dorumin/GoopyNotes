@@ -1,8 +1,6 @@
-/* eslint-disable */
-
 const path = require('path');
-const { ProvidePlugin } = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const createReloadPlugin = require('./src/electron/reload.js');
@@ -16,23 +14,25 @@ module.exports = {
     // target: 'electron-renderer',
     entry: './src/index.tsx',
     output: {
-        path: path.join(__dirname, 'output'),
-        filename: 'app.bundle.js'
+        path: path.join(__dirname, 'output', 'code'),
+        filename: '[contenthash].bundle.js',
+        publicPath: '../code/'
     },
     plugins: [
-        new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            filename: '../index.html',
+            publicPath: '/code/'
+        }),
         new MiniCssExtractPlugin(),
         new CopyPlugin({
             patterns: [
                 {
                     from: 'public',
-                    to: ''
+                    to: '..'
                 }
             ]
         }),
-        new ProvidePlugin({
-            process: 'process'
-        }),
+        new CleanWebpackPlugin(),
         DEV && ElectronReloadPlugin('electron-renderer')
     ].filter(Boolean),
     module: {

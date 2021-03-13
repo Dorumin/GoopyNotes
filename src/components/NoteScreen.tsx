@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { decrypt } from 'tiny-encryption-algorithm';
 import { sha256 } from 'js-sha256';
-import assert from 'assert';
+import { assert } from 'assertmin';
 import { useSelector } from "../redux";
 import Dragsizable from "./Dragsizable";
 
@@ -27,7 +27,7 @@ export default function NoteScreen() {
         e.preventDefault();
 
         // Appease typescript, hopefully stripped out on prod
-        assert(note.type === 'encrypted');
+        assert.unchecked(note.type === 'encrypted');
 
         try {
             const result = decrypt(note.encryptedContent, password).toString();
