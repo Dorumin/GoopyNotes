@@ -8,8 +8,6 @@ type GlobalErrorBoundaryProps = {
 
 type GlobalErrorBoundaryState = {
     errored: boolean;
-    // It can literally be anything, `throw expr`
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     error: any;
     errorInfo: ReactErrorInfo;
 };
@@ -34,8 +32,6 @@ export default class GlobalErrorBoundary extends Component<GlobalErrorBoundaryPr
         };
     }
 
-    // It can literally be anything, `throw expr`
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     componentDidCatch(error: any, errorInfo: ReactErrorInfo) {
         this.setState({
             error,
