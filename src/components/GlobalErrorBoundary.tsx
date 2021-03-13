@@ -1,21 +1,22 @@
-import { Component } from 'react';
+import { Component, ReactNode } from 'react';
 
 import './css/GlobalErrorBoundary.css';
 
 type GlobalErrorBoundaryProps = {
-    children: React.ReactChild;
-}
+    children: ReactNode;
+};
 
 type GlobalErrorBoundaryState = {
     errored: boolean;
+    // It can literally be anything, `throw expr`
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     error: any;
     errorInfo: ReactErrorInfo;
-}
+};
 
 type ReactErrorInfo = null | {
     componentStack: string;
-}
+};
 
 export default class GlobalErrorBoundary extends Component<GlobalErrorBoundaryProps, GlobalErrorBoundaryState> {
     constructor(props: GlobalErrorBoundaryProps) {
@@ -33,6 +34,7 @@ export default class GlobalErrorBoundary extends Component<GlobalErrorBoundaryPr
         };
     }
 
+    // It can literally be anything, `throw expr`
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     componentDidCatch(error: any, errorInfo: ReactErrorInfo) {
         this.setState({
