@@ -1,4 +1,8 @@
 {
+    "ignorePatterns": [
+        "webpack.config.js",
+        "server/"
+    ],
     "env": {
         "browser": true,
         "es2021": true
@@ -27,10 +31,15 @@
         "@typescript-eslint"
     ],
     "rules": {
+        // Uses new JSX transform
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
         "react/no-unescaped-entities": "off",
+        // Typing component return values is a chore
         "@typescript-eslint/explicit-module-boundary-types": "off",
+        // I have enough self control to know when `any` is a good choice
+        "@typescript-eslint/no-explicit-any": "off",
+        // No ASI
         "semi": ["error", "always"]
     }
 }

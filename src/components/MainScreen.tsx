@@ -1,29 +1,28 @@
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useSelector } from '../redux';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import './css/MainScreen.css';
 
 import Note from './Note';
-import Dragsizable from './Dragsizable';
+// import Dragsizable from './Dragsizable';
+// import ShittyCounter from './ShittyCounter';
 
 export default function MainScreen() {
     const notes = useSelector(state => state.notes);
-    const [redirect, setRedirect] = useState('');
+    const history = useHistory();
 
     const onMakeNote = useCallback(() => {
-        setRedirect('/make');
-    }, []);
+        history.push('/make');
+    }, [history]);
 
-    if (redirect !== '') {
-        return <Redirect to={redirect} />;
-    }
+    // return <ShittyCounter />;
 
-    return (
-        <>
-            <Dragsizable />
-        </>
-    );
+    // return (
+    //     <>
+    //         <Dragsizable />
+    //     </>
+    // );
 
     return (
         <>
