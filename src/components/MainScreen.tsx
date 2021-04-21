@@ -1,12 +1,13 @@
 import { useCallback } from 'react';
 import { useSelector } from '../redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import './css/MainScreen.css';
 
 import Note from './Note';
 // import Dragsizable from './Dragsizable';
 // import ShittyCounter from './ShittyCounter';
+// import Slider from './Slider';
 
 export default function MainScreen() {
     const notes = useSelector(state => state.notes);
@@ -16,13 +17,11 @@ export default function MainScreen() {
         history.push('/make');
     }, [history]);
 
+    // return <Slider min={0} max={1000} />;
+
     // return <ShittyCounter />;
 
-    // return (
-    //     <>
-    //         <Dragsizable />
-    //     </>
-    // );
+    // return <Dragsizable />;
 
     return (
         <>
@@ -46,6 +45,10 @@ export default function MainScreen() {
                 >
                     +
                 </button>
+
+                <Link to="/test">
+                    Go to testing
+                </Link>
             </main>
         </>
     );

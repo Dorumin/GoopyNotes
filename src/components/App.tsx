@@ -3,6 +3,7 @@ import { BrowserRouter, HashRouter, Switch, Route } from 'react-router-dom';
 
 import MainScreen from './MainScreen';
 import MakeScreen from './MakeScreen';
+import TestScreen from './TestScreen';
 // import NoteScreen from './NoteScreen';
 const NoteScreen = lazy(() => import('./NoteScreen'));
 
@@ -16,6 +17,7 @@ export default function App() {
             <Router>
                 <Switch>
                     <Route path="/make" component={MakeScreen} />
+                    <Route path="/test" component={TestScreen} />
                     <Route path="/note/:id" component={NoteScreen} />
                     <Route path="/" component={MainScreen} />
                 </Switch>

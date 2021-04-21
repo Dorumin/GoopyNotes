@@ -1,4 +1,9 @@
 {
+    "plugins": [
+        ["wildcard", {
+            "exts": ["json"]
+        }]
+    ],
     "presets": [
         ["@babel/preset-react", {
             // New JSX transform

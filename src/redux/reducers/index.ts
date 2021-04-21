@@ -5,7 +5,6 @@ import storage from 'redux-persist/lib/storage';
 import counter from './counter';
 import notes from './notes';
 
-
 export default persistReducer(
     {
         key: 'root',

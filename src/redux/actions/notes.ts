@@ -21,7 +21,7 @@ export type EncryptedNote = BaseNote & {
 
 export type Note = PlainNote | EncryptedNote;
 
-export interface NotesAddAction {
+export type NotesAddAction = {
     type: typeof ADD_NOTE;
     payload: AddNoteParams
 };

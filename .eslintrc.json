@@ -31,7 +31,7 @@
         "@typescript-eslint"
     ],
     "rules": {
-        // Uses new JSX transform
+        // I'm using the new JSX transform
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
 
@@ -44,7 +44,11 @@
         // I have enough self control to know when `any` is a good choice
         "@typescript-eslint/no-explicit-any": "off",
 
+        // I want to use hasOwnProperty
+        "no-prototype-builtins": "off",
+
         // No ASI
-        "semi": ["error", "always"]
+        "@typescript-eslint/semi": ["error", "always"],
+        "semi": "off"
     }
 }

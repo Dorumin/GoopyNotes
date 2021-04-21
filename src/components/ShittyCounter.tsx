@@ -26,7 +26,7 @@ export default function BruhComponent() {
 
     return (
         <button onClick={onClick}>
-            Click me to increase {count}
+            Click me to increase aaaa{count}
         </button>
     );
 }

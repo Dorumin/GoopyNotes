@@ -1,0 +1,8 @@
+{
+    "en": {
+        "current": "Current count: {count}"
+    },
+    "es": {
+        "current": "Cuenta actual: {count}"
+    }
+}

@@ -6,7 +6,7 @@ body {
 #root {
     color: white;
     font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
-    background: url('/assets/bgs/Opalset.jpg') right bottom / 1100px no-repeat fixed;
+    background: url('../assets/bgs/Opalset.jpg') right bottom / 1100px no-repeat fixed;
     background-size: cover;
     position: absolute;
     top: 0;
